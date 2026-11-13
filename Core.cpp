@@ -290,10 +290,10 @@ bool in_triangle(const Point& p, const Triangle& t, const std::vector<Point>& po
 }
 
 //
-//dla ka¿dego punktu :
-//znajdŸ trójk¹t który go zawiera
+//dla kaÂ¿dego punktu :
+//znajdÅ¸ trÃ³jkÂ¹t ktÃ³ry go zawiera
 //podziel go na 3
-//popraw lokalnie triangulacjê(flipy)
+//popraw lokalnie triangulacjÃª(flipy)
 //
 
 void Mesh::Lawson() {
@@ -436,92 +436,4 @@ void Mesh::Lawson() {
     }
 
 
-}
-
-double triangle_quality(const Triangle& t, const std::vector<Point>& points) {
-
-    const Point& A = points[t.a];
-    const Point& B = points[t.b];
-    const Point& C = points[t.c];
-
-   
-    double ab2 = distance(A, B);
-    double bc2 = distance(B, C);
-    double ca2 = distance(C, A);
-
-    double ab = std::sqrt(ab2);
-    double bc = std::sqrt(bc2);
-    double ca = std::sqrt(ca2);
-
-   
-    double area = std::abs(orient(A, B, C)) / 2.0;
-
-    if (area == 0) return 0;
-
-    double q = (4.0 * std::sqrt(3.0) * area) / (ab2 + bc2 + ca2);
-
-    return q;
-}
-
-void Mesh::analyze_quality() {
-
-    std::vector<double> qualities;
-
-    for (int i = 0; i < triangles.size(); i++) {
-        double q = triangle_quality(triangles[i], points);
-        qualities.push_back(q);
-    }
-
-    if (qualities.empty()) return;
-
- 
-    std::sort(qualities.begin(), qualities.end());
-
-  
-    double median;
-    int n = qualities.size();
-
-    if (n % 2 == 0)
-        median = (qualities[n/2 - 1] + qualities[n/2]) / 2.0;
-    else
-        median = qualities[n/2];
-
-  
-    double sum = 0;
-    for (double q : qualities) sum += q;
-    double mean = sum / n;
-
-  
-    int bins = 10;
-    std::vector<int> hist(bins, 0);
-
-    for (double q : qualities) {
-        int idx = std::min((int)(q * bins), bins - 1);
-        hist[idx]++;
-    }
-
-   
-    int mode_bin = 0;
-    for (int i = 1; i < bins; i++) {
-        if (hist[i] > hist[mode_bin])
-            mode_bin = i;
-    }
-
-  
-    std::cout << "---- ANALIZA ----\n";
-    std::cout << "liczba trojkatow: " << n << std::endl;
-    std::cout << "srednia jakosc: " << mean << std::endl;
-    std::cout << "mediana: " << median << std::endl;
-    std::cout << "moda (przedzial): [" 
-              << (double)mode_bin / bins << ", "
-              << (double)(mode_bin + 1) / bins << "]\n";
-
-    std::cout << "\nHistogram:\n";
-    for (int i = 0; i < bins; i++) {
-        double from = (double)i / bins;
-        double to = (double)(i + 1) / bins;
-
-        std::cout << "[" << from << "," << to << "]: "
-                  << hist[i] << std::endl;
-    }
 }
