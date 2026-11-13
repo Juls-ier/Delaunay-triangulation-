@@ -3,11 +3,17 @@ C++ application for implementing, comparing and visualizing Delaunay triangulati
 
 # Features
 *Implementation of the Bowyer-Watson triangulation algorithm.
+
 *Implementation of Lawson's incremental triangulation algorithm.
+
 *Visualization of point sets and triangulated meshes.
+
 *Circumcircle calculation for triangles.
+
 *Delaunay condition verification.
+
 *Triangle quality analysis, including mean, median and histogram.
+
 *Execution time measurement for both algorithms.
 
 The application uses SFML to display the point sets and generated triangulations
