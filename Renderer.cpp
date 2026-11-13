@@ -141,7 +141,7 @@ void Renderer::draw(sf::RenderWindow& window, Mesh& mesh, Mesh& mesh2)
 
     }*/
 
-    // trójk¹ty
+    // trÃ³jkÂ¹ty
 
 
     sf::VertexArray triLines(sf::Lines);
