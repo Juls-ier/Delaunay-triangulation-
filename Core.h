@@ -58,7 +58,6 @@ struct Mesh {
 	void Bowyer_Watson();
 	void delunay_check();
 	void Lawson();
-	void analyze_quality();
 };
 
 
