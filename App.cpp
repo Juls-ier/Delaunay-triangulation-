@@ -23,7 +23,7 @@ App::App()
       std::cout << "liczba elementow: " << mesh.triangles.size() << std::endl;
       std::cout << "czas Bowyer-Watson: " << time1.count() << " s\n";
 
-         mesh.analyze_quality();
+    
 
       // Lawson
 
