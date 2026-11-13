@@ -16,6 +16,7 @@ C++ application for implementing, comparing and visualizing Delaunay triangulati
 
 *Execution time measurement for both algorithms.
 
+# Context
 The application uses SFML to display the point sets and generated triangulations
 
 This project was developed as part of university coursework in computational geometry.
